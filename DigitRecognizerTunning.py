@@ -2,6 +2,8 @@
 """
     A class for Recognizing Digits
 """
+import matplotlib
+matplotlib.use('Agg')
 
 import numpy as np
 from matplotlib import pyplot as plt
