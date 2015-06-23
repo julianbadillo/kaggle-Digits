@@ -34,7 +34,7 @@ def tuneL2():
     plt.plot(l2s, acc)
     plt.xlabel("L2")
     plt.ylabel("accuracy")
-    plt.savefig('tuneL2.png')
+    plt.savefig('data/tuneL2.png')
     plt.close()
 
 def tuneEpsilon():
@@ -133,7 +133,7 @@ def learningCurve():
     
     plt.subplot(1, 2, 1).plot(ls, acc)
     plt.subplot(1, 2, 2).plot(ls, Jhist)
-    plt.savefig("Learning_curve.png")
+    plt.savefig("data/Learning_curve.png")
     
 def trySeveral():
     """
@@ -170,7 +170,7 @@ def trySeveral():
     
     print "Best so far = %s%%"%bestAcc
     #save it
-    bestDig.save('theta%s_%s.txt'%(l2, bestAcc))
+    bestDig.save('data/theta%s_%s.txt'%(l2, bestAcc))
     
 def main():
     #tuneL2()
