@@ -145,7 +145,7 @@ def trySeveral():
     """
     #load data
     X_tr, y_tr = loadTrainData(f='data/train_14x14.csv')
-    
+    m, n = X_tr.shape
     times = 20
     bestDig = None
     bestAcc = 0
