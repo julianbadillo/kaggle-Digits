@@ -70,7 +70,7 @@ def main():
     #insert y
     data = np.insert(X2, 0, y.flatten(), axis=1)
     print "saving the processed training set"
-    save('train_14x14.csv', data)
+    save('data/train_14x14.csv', data)
     print "done"
     
     #transform the test set
@@ -78,7 +78,7 @@ def main():
     X = loadTestData()
     X2 = transformData(X)
     print "saving the processed test set"
-    save('test_14x14.csv', X2)
+    save('data/test_14x14.csv', X2)
     print "done"
     
 if __name__ == '__main__':
