@@ -7,12 +7,12 @@ import scipy as sp
 import random
 from math import sqrt, ceil
 
-def loadTrainData(f='data/train_short.csv', debug=False):
+def loadTrainData(f='data/train.csv', debug=False):
     """
     Loads the Training data
     """
     #read the train set
-    data = np.loadtxt("data/train_short.csv", delimiter=',', skiprows=1)
+    data = np.loadtxt(f, delimiter=',', skiprows=1)
     if debug:
         print "Shape of the Train set", data.shape
     m, n = data.shape
@@ -22,7 +22,7 @@ def loadTrainData(f='data/train_short.csv', debug=False):
     
 def loadTestData(f='data/test.csv', debug=False):
     #read the test set
-    data = np.loadtxt("data/test.csv", delimiter=',', skiprows=1)
+    data = np.loadtxt(f, delimiter=',', skiprows=1)
     if debug:
         print "Shape of the Test set", data.shape
     return data
