@@ -4,25 +4,17 @@
 """
 
 import numpy as np
-import scipy as sp
-import scipy.io as sio
-from scipy.optimize import fmin_cg
 from matplotlib import pyplot as plt
 import random
 from math import sqrt, ceil
 from utils import *
 from DigitRecognizer import DigitRecognizer
 
-
 bits = 14
 
 def tuneL2():
     #load data
-    data = np.loadtxt("train_short14x14.csv", delimiter=',', skiprows=1)
-    print "Shape of the Train set", data.shape
-    m, n = data.shape
-    y_tr = data[:,:1]
-    X_tr = data[:,1:]
+    X_tr, y_tr = loadTrainData(f='data/train_14x14.csv')
     
     acc = []
     l2s = [i for i in range(20,41)]
@@ -46,13 +38,8 @@ def tuneL2():
     plt.close()
 
 def tuneEpsilon():
-
     #load data
-    data = np.loadtxt("train_short14x14.csv", delimiter=',', skiprows=1)
-    print "Shape of the Train set", data.shape
-    m, n = data.shape
-    y_tr = data[:,:1]
-    X_tr = data[:,1:]
+    X_tr, y_tr = loadTrainData(f='data/train_14x14.csv')
     
     acc = []
     ls = np.linspace(0.2, 0.6, 10)
@@ -77,11 +64,7 @@ def tuneEpsilon():
 
 def tuneLambda():
     #load data
-    data = np.loadtxt("train_short14x14.csv", delimiter=',', skiprows=1)
-    print "Shape of the Train set", data.shape
-    m, n = data.shape
-    y_tr = data[:,:1]
-    X_tr = data[:,1:]
+    X_tr, y_tr = loadTrainData(f='data/train_14x14.csv')
     
     acc = []
     ls = np.linspace(0.2, 10, 20)
@@ -106,11 +89,7 @@ def tuneLambda():
 
 def plotJhist():
     #load data
-    data = np.loadtxt("train_short.csv", delimiter=',', skiprows=1)
-    print "Shape of the Train set", data.shape
-    m, n = data.shape
-    y_tr = data[:,:1]
-    X_tr = data[:,1:]
+    X_tr, y_tr = loadTrainData(f='data/train_14x14.csv')
     
     dig = DigitRecognizer(bits*bits, 27, 10)
     dig.setTrainParams(maxiter=250)
@@ -129,11 +108,7 @@ def plotJhist():
     
 def learningCurve():
     #load data
-    data = np.loadtxt("train_short.csv", delimiter=',', skiprows=1)
-    print "Shape of the Train set", data.shape
-    m, n = data.shape
-    y_tr = data[:,:1]
-    X_tr = data[:,1:]
+    X_tr, y_tr = loadTrainData(f='data/train_14x14.csv')
     
     acc = []
     Jhist = []
@@ -166,12 +141,8 @@ def trySeveral():
         Since the initialization is random, there is hope
         that some will have higher fitting
     """
-    #TODO train on full data
-    data = np.loadtxt("train_short14x14.csv", delimiter=',', skiprows=1)
-    print "Shape of the Train set", data.shape
-    m, n = data.shape
-    y_tr = data[:,:1]
-    X_tr = data[:,1:]
+    #load data
+    X_tr, y_tr = loadTrainData(f='data/train_14x14.csv')
     
     times = 20
     bestDig = None
