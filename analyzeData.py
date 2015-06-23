@@ -69,7 +69,7 @@ def showPartialDistributions(y):
 def main():    
     bits = 28
                               
-    X_tr, y_tr = loadTrainData(f='data/train28x28.csv')
+    X_tr, y_tr = loadTrainData()
                
     #how many of each
     showPartialDistributions(y_tr)
