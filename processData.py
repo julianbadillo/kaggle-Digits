@@ -52,20 +52,34 @@ def transformData2(X):
         Xnew[i] = matnew.flatten()
     return Xnew
 
+def save(f, data, header='pixels'):
+    n = data.shape[0]
+    out = open(f, 'w')
+    out.write(header+'/n')
+    for i in range(n):
+        out.write(','.join('%s'%x for x in data[i])+'/n')
+    out.close()
+    
 def main():    
     bits = 14
                               
     #Transform the train set
-    X, y = loadTrainData()
+    print "Loading the training file"
+    X, y = loadTrainData(debug=True)
     X2 = transformData(X)
     #insert y
     data = np.insert(X2, 0, y.flatten(), axis=1)
-    np.savetxt('train_14x14.csv',data , fmt='%s' , delimiter=',', header='pixels')
+    print "saving the processed training set"
+    save('train_14x14.csv', data)
+    print "done"
     
     #transform the test set
+    print "loading the test file"
     X = loadTestData()
     X2 = transformData(X)
-    np.savetxt('test_14x14.csv',X2 , fmt='%s' , delimiter=',', header='pixels')
+    print "saving the processed test set"
+    save('test_14x14.csv', X2)
+    print "done"
     
 if __name__ == '__main__':
     main()
