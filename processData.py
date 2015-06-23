@@ -1,9 +1,10 @@
 #!/usr/bin/python
 """
-    Show plots for understanding the data
+    Initial processing to get smaller ammount of features
 """
 import numpy as np
 from math import sqrt, ceil
+from utils import *
 
 def transformData(X):
     """
@@ -54,23 +55,17 @@ def transformData2(X):
 def main():    
     bits = 14
                               
-    #read the train set
-    data = np.loadtxt("train_short.csv", delimiter=',', skiprows=1)
-    print "Shape of the Train set", data.shape
-    m, n = data.shape
-    y = data[:,:1]
-    X = data[:,1:]
-
+    #Transform the train set
+    X, y = loadTrainData()
     X2 = transformData(X)
-               
-    #show random sample
-    samples = np.random.permutation(m)[:49]
-    #showExample(X2, y, samples, bits)
-    #add y column and save  
-    data2 = np.insert(X2, 0, y.flatten(), axis=1)
-    #data2 = X2
-    print "Shape of the Train set", data2.shape
-    np.savetxt('train_short14x14.csv',data2 , fmt='%s' , delimiter=',', header='pixels')      
+    #insert y
+    data = np.insert(X2, 0, y.flatten(), axis=1)
+    np.savetxt('train_14x14.csv',data , fmt='%s' , delimiter=',', header='pixels')
+    
+    #transform the test set
+    X = loadTestData()
+    X2 = transformData(X)
+    np.savetxt('test_14x14.csv',X2 , fmt='%s' , delimiter=',', header='pixels')
     
 if __name__ == '__main__':
     main()
