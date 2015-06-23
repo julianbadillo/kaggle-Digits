@@ -17,6 +17,7 @@ bits = 14
 def tuneL2():
     #load data
     X_tr, y_tr = loadTrainData(f='data/train_14x14.csv')
+    m, n = X_tr.shape
     
     acc = []
     l2s = [i for i in range(20,41)]
@@ -42,6 +43,7 @@ def tuneL2():
 def tuneEpsilon():
     #load data
     X_tr, y_tr = loadTrainData(f='data/train_14x14.csv')
+    m, n = X_tr.shape
     
     acc = []
     ls = np.linspace(0.2, 0.6, 10)
@@ -67,6 +69,7 @@ def tuneEpsilon():
 def tuneLambda():
     #load data
     X_tr, y_tr = loadTrainData(f='data/train_14x14.csv')
+    m, n = X_tr.shape
     
     acc = []
     ls = np.linspace(0.2, 10, 20)
@@ -92,6 +95,7 @@ def tuneLambda():
 def plotJhist():
     #load data
     X_tr, y_tr = loadTrainData(f='data/train_14x14.csv')
+    m, n = X_tr.shape
     
     dig = DigitRecognizer(bits*bits, 27, 10)
     dig.setTrainParams(maxiter=250)
@@ -111,6 +115,7 @@ def plotJhist():
 def learningCurve():
     #load data
     X_tr, y_tr = loadTrainData(f='data/train_14x14.csv')
+    m, n = X_tr.shape
     
     acc = []
     Jhist = []
