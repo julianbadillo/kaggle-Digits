@@ -7,6 +7,26 @@ import scipy as sp
 import random
 from math import sqrt, ceil
 
+def loadTrainData(f='data/train_short.csv', debug=False):
+    """
+    Loads the Training data
+    """
+    #read the train set
+    data = np.loadtxt("data/train_short.csv", delimiter=',', skiprows=1)
+    if debug:
+        print "Shape of the Train set", data.shape
+    m, n = data.shape
+    y_tr = data[:,:1]
+    X_tr = data[:,1:]
+    return X_tr, y_tr
+    
+def loadTestData(f='data/test.csv', debug=False):
+    #read the test set
+    data = np.loadtxt("data/test.csv", delimiter=',', skiprows=1)
+    if debug:
+        print "Shape of the Test set", data.shape
+    return data
+
 def initMatrix(r, c, e):
     """
     Creates a matrix [r x c] with random
@@ -15,7 +35,6 @@ def initMatrix(r, c, e):
     m = np.random.rand(r,c)
     m = -e + m*2*e
     return m
-
 
 def sigmoid(x):
     """
