@@ -9,6 +9,7 @@ from scipy.optimize import fmin_cg
 from matplotlib import pyplot as plt
 import random
 from math import sqrt, ceil
+from utils import *
 
 def showExample(X, y, index, bits = 20):
     """
@@ -62,18 +63,13 @@ def showPartialDistributions(y):
         j += 1
 
     #plt.show()
-    plt.savefig('distributions.png')
+    plt.savefig('data/distributions.png')
     
 
 def main():    
     bits = 28
                               
-    #read the train set
-    data = np.loadtxt("train_short.csv", delimiter=',', skiprows=1)
-    print "Shape of the Train set", data.shape
-    m, n = data.shape
-    y_tr = data[:,:1]
-    X_tr = data[:,1:]
+    X_tr, y_tr = loadTrainData(f='data/train28x28.csv')
                
     #how many of each
     showPartialDistributions(y_tr)
