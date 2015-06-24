@@ -24,17 +24,19 @@ def main():
     print "Loading trained model"
     dig = DigitRecognizer(bits*bits, 27, 10)
     #load best trained so far
-    dig.load("data/theta27_90.5688230672.txt")
-
+    best = "theta27_90.5688230672.txt"
+    dig.load("data/%s"%best)
+    print best, loaded
+    
     #test
-    print "making predictions"
     test = np.loadtxt("data/test_14x14.csv", delimiter=',', skiprows=1)
     X = test[:,:]
+    print X.shape, test.shape
     #transfor the data to fit the new bit size
     #X = transformData(X)
-    
+    print "making predictions"
     pred = dig.predict(X)
-    
+    print "finished", pred.shape
     #predictions to submission file
     save(pred)
     
