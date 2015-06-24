@@ -185,6 +185,8 @@ class DigitRecognizer:
         
         #maximun index by rows
         p = np.argmax(a3, axis=1)
+        #save the latest hypothesis value
+        self.h = a3
         return p    
     
     def save(self, f):
