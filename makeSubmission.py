@@ -26,7 +26,7 @@ def main():
     #load best trained so far
     best = "theta27_90.5688230672.txt"
     dig.load("data/%s"%best)
-    print best, loaded
+    print best, "loaded"
     
     #test
     test = np.loadtxt("data/test_14x14.csv", delimiter=',', skiprows=1)
