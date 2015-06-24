@@ -208,7 +208,7 @@ def analyzeFailures():
         for p in range(10):
             #count and filter
             x = np.logical_and(y_w == c , pred_w == p).sum()
-            s += "%4s"
+            s += "%4s"%x
         print s
     
 def main():
