@@ -28,7 +28,7 @@ def main():
 
     #test
     print "making predictions"
-    test = np.loadtxt("test_14x14.csv", delimiter=',', skiprows=1)
+    test = np.loadtxt("data/test_14x14.csv", delimiter=',', skiprows=1)
     X = test[:,:]
     #transfor the data to fit the new bit size
     #X = transformData(X)
