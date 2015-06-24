@@ -213,7 +213,7 @@ def analyzeFailures():
         print s
         
     #pick 9 vs 4, some at random
-    c = 9, p = 4
+    c = 9; p = 4
     ind = np.logical_and(y_w == c , pred_w == p)
     print "%s vs %s"%(c, p)
     print h_w[ind,:]
