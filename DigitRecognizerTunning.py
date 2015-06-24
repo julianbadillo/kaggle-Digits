@@ -218,7 +218,7 @@ def analyzeFailures():
     print "%s vs %s"%(c, p)
     h = h_w[ind,:]
     for i in range(ind.sum()):
-        print ''.join(' %3.f'%x for x in h[i,:])
+        print ''.join('%4.3f'%x for x in h[i,:])
     
 def main():
     #tuneL2()
