@@ -217,8 +217,8 @@ def analyzeFailures():
     ind = np.logical_and(y_w == c , pred_w == p)
     print "%s vs %s"%(c, p)
     h = h_w[ind,:]
-    for i in range(ind.sum()):
-        print ''.join(' %.3f'%x for x in h[i,:])
+    #for i in range(ind.sum()):
+    #    print ''.join(' %.3f'%x for x in h[i,:])
     print "averages"
     print ''.join(' %.3f'%x for x in h.sum(0)/ind.sum())
     
@@ -226,8 +226,6 @@ def analyzeFailures():
     ind = np.logical_and(y_w == c , pred_w == p)
     print "%s vs %s"%(c, p)
     h = h_w[ind,:]
-    for i in range(ind.sum()):
-        print ''.join(' %.3f'%x for x in h[i,:])
     print "averages"
     print ''.join(' %.3f'%x for x in h.sum(0)/ind.sum())
     
