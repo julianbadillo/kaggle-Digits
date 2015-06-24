@@ -193,7 +193,7 @@ def analyzeFailures():
     #filter wrong cases
     wrong = (pred != y_tr.flatten())
     #hypothesis values for wrong
-    X_w = X[wrong,:]
+    X_w = X_tr[wrong,:]
     y_w = y_tr[wrong,:].flatten()
     h_w = dig.h[wrong,:]
     pred_w = pred[wrong]
