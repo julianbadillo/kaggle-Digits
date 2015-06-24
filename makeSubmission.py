@@ -11,7 +11,7 @@ bits = 14
 
 
 def save(pred):
-    f = open('predictions.csv', 'w')
+    f = open('data/predictions.csv', 'w')
     #header
     f.write('"ImageId","Label"\n')
     for i in range(pred.size):
