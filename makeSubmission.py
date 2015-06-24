@@ -24,7 +24,7 @@ def main():
     print "Loading trained model"
     dig = DigitRecognizer(bits*bits, 27, 10)
     #load best trained so far
-    dig.load("theta27_90.12.txt")
+    dig.load("data/theta27_90.5688230672.txt")
 
     #test
     print "making predictions"
