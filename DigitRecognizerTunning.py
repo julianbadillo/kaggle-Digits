@@ -219,6 +219,8 @@ def analyzeFailures():
     h = h_w[ind,:]
     for i in range(ind.sum()):
         print ''.join(' %.3f'%x for x in h[i,:])
+    print "averages"
+    print h.sum(0)/ind.sum()
     
 def main():
     #tuneL2()
