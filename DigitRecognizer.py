@@ -185,6 +185,9 @@ class DigitRecognizer:
         
         #maximun index by rows
         p = np.argmax(a3, axis=1)
+        #TODO fix a threshold , so if the max doesn't pass that then feed to another algorithm.
+        #TODO deciding between best and second with another identifier
+        
         #save the latest hypothesis value
         self.h = a3
         return p    
