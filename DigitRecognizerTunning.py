@@ -182,7 +182,7 @@ def trySeveral():
 def analyzeFailures():
     #load best trained model
     l2 = 27
-    dig = DigitRecognizer(bist*bits, l2, 10)
+    dig = DigitRecognizer(bits*bits, l2, 10)
     best = "theta27_90.5688230672.txt"
     dig.load("data/%s"%best)
     #load data
