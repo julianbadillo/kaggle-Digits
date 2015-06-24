@@ -55,7 +55,7 @@ def transformData2(X):
 def save(f, data, header='pixels'):
     n = data.shape[0]
     out = open(f, 'w')
-    out.write(header+'/n')
+    out.write(header+'\n')
     for i in range(n):
         out.write(','.join('%s'%x for x in data[i])+'\n')
     out.close()
