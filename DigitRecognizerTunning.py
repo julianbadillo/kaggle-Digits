@@ -216,7 +216,9 @@ def analyzeFailures():
     c = 9; p = 4
     ind = np.logical_and(y_w == c , pred_w == p)
     print "%s vs %s"%(c, p)
-    print h_w[ind,:]
+    h = h_w[ind,:]
+    for i in range(ind.sum()):
+        print ''.join(' %3.f'%x for x in h[i,:])
     
 def main():
     #tuneL2()
