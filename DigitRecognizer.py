@@ -4,10 +4,7 @@
 """
 
 import numpy as np
-import scipy as sp
-import scipy.io as sio
 from scipy.optimize import fmin_cg
-from matplotlib import pyplot as plt
 import random
 from math import sqrt, ceil
 from utils import *
