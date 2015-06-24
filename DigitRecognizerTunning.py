@@ -204,7 +204,7 @@ def analyzeFailures():
     print "correct label (rows) vs predicted label (colums)"
     print "  \\|"+("".join("%4s"%i for i in range(10)))
     for c in range(10):
-        s = '%2s | ' %s
+        s = '%2s | ' %c
         for p in range(10):
             #count and filter
             x = np.logical_and(y_w == c , pred_w == p).sum()
