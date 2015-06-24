@@ -178,12 +178,45 @@ def trySeveral():
     print "Best so far = %s%%"%bestAcc
     #save it
     bestDig.save('data/theta%s_%s.txt'%(l2, bestAcc))
+ 
+def analyzeFailures():
+    #load best trained model
+    l2 = 27
+    dig = DigitRecognizer(bit*bits, l2, 10)
+    best = "theta27_90.5688230672.txt"
+    dig.load("data/%s"%best)
+    #load data
+    X_tr, y_tr = loadTrainData(f='data/train_14x14.csv')
+    
+    #make predictions
+    pred = dig.predict(X_tr)
+    #filter wrong cases
+    wrong = (pred != y_tr.flatten())
+    #hypothesis values for wrong
+    X_w = X[wrong,:]
+    y_w = y_tr[wrong,:].flatten()
+    h_w = dig.h[wrong,:]
+    pred_w = pred[wrong]
+    
+    m = wrong.sum()
+    print m, "wrong samples"
+    #print a matrix
+    print "correct label (rows) vs predicted label (colums)"
+    print "  \\|"+("".join("%4s"%i for i in range(10)))
+    for c in range(10):
+        s = '%2s | ' %s
+        for p in range(10):
+            #count and filter
+            x = np.logical_and(y_w == c , pred_w == p).sum()
+            s += "%4s"
+        print s
     
 def main():
     #tuneL2()
     #tuneEpsilon()
     #tuneLambda()
-    trySeveral()
+    #trySeveral()
+    analyzeFailures()
 
 if __name__ == '__main__':
     main()
