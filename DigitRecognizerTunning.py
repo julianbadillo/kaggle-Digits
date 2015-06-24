@@ -178,7 +178,7 @@ def trySeveral():
     print "Best so far = %s%%"%bestAcc
     #save it
     bestDig.save('data/theta%s_%s.txt'%(l2, bestAcc))
- 
+    
 def analyzeFailures():
     #load best trained model
     l2 = 27
@@ -211,6 +211,12 @@ def analyzeFailures():
             x = np.logical_and(y_w == c , pred_w == p).sum()
             s += "%4s"%x
         print s
+        
+    #pick 9 vs 4, some at random
+    c = 9, p = 4
+    ind = np.logical_and(y_w == c , pred_w == p)
+    print "%s vs %s"%(c, p)
+    print h_w[ind,:]
     
 def main():
     #tuneL2()
