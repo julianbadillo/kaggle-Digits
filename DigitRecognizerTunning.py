@@ -212,7 +212,8 @@ def analyzeFailures():
             s += "%4s"%x
         print s
         
-    #pick 9 vs 4, some at random
+    """
+     #pick 9 vs 4, some at random
     c = 9; p = 4
     ind = np.logical_and(y_w == c , pred_w == p)
     print "%s vs %s"%(c, p)
@@ -228,14 +229,18 @@ def analyzeFailures():
     h = h_w[ind,:]
     print "averages"
     print ''.join(' %.3f'%x for x in h.sum(0)/ind.sum())
+    """
+        
+def analyzeFailingTheshold():
+    pass
     
     
 def main():
     #tuneL2()
     #tuneEpsilon()
     #tuneLambda()
-    #trySeveral()
-    analyzeFailures()
+    trySeveral()
+    #analyzeFailures()
 
 if __name__ == '__main__':
     main()
