@@ -232,7 +232,29 @@ def analyzeFailures():
     """
         
 def analyzeFailingTheshold():
-    pass
+    #load best trained model
+    l2 = 27
+    dig = DigitRecognizer(bits*bits, l2, 10)
+    best = "theta27_90.5688230672.txt"
+    dig.load("data/%s"%best)
+    #load data
+    X_tr, y_tr = loadTrainData(f='data/train_14x14.csv')
+    
+    #make predictions
+    pred = dig.predict(X_tr)
+    #filter wright and wrong cases
+    wrong = (pred != y_tr.flatten())
+    right = (pred == y_tr.flatten())
+    #hypothesis values for wrong
+    
+    #define a trheshold
+    thr = 0.7
+    #how many bad have max under threshold?
+    print "%s%%"%(y_tr[wrong].max(1) < thr).sum()*100.0/wrong.sum()
+    #how many good have max below threshol?
+    print "%s%%"%(y_tr[right].max(1) < thr).sum()*100.0/right.sum()
+    print m, "wrong samples"
+    
     
     
 def main():
