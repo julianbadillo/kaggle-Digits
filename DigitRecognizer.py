@@ -65,6 +65,9 @@ class DigitRecognizer:
         #unwrap (probably uneeded)
         #self.Theta1 = ThOpt[:self.l2*(self.l1+1)].reshape((self.l2,self.l1+1))
         #self.Theta2 = ThOpt[self.l2*(self.l1+1):].reshape((self.l3,self.l2+1))
+        #TODO train the second identifier for threshold
+        #what about picking the samples with the highest confidence
+        #and do a K-distance algorithm
         
     def cost(self, Theta, X, y):
         """

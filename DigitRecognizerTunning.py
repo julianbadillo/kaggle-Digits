@@ -235,25 +235,35 @@ def analyzeFailingTheshold():
     #load best trained model
     l2 = 27
     dig = DigitRecognizer(bits*bits, l2, 10)
-    best = "theta27_90.5688230672.txt"
+    best = "theta27_91.3619047619.txt"
     dig.load("data/%s"%best)
     #load data
     X_tr, y_tr = loadTrainData(f='data/train_14x14.csv')
-    
+    m = X_tr.shape[0]
     #make predictions
     pred = dig.predict(X_tr)
+
     #filter wright and wrong cases
     wrong = (pred != y_tr.flatten())
     right = (pred == y_tr.flatten())
     #hypothesis values for wrong
+    h_w = dig.h[wrong]
+    h_r = dig.h[right]
+    
+
+    print wrong.sum(), "wrong samples"
+    print right.sum(), "right samples"
+    acc = right.sum()* 1.0 / m
     
     #define a trheshold
-    thr = 0.7
-    #how many bad have max under threshold?
-    print "%s%%"%(y_tr[wrong].max(1) < thr).sum()*100.0/wrong.sum()
-    #how many good have max below threshol?
-    print "%s%%"%(y_tr[right].max(1) < thr).sum()*100.0/right.sum()
-    print m, "wrong samples"
+    for thr in np.linspace(0.5,0.9, 5):
+        #how many bad have max below threshold?
+        wrongOverT = (h_w.max(1) < thr).sum()
+        #how many good have max below threshol?
+        rightOvetT = (h_r.max(1) < thr).sum()
+        print "Threshold > %s"%thr       
+        print "wrong we will look: %s (%s%%)"%(wrongOverT, wrongOverT*100.0/wrong.sum())
+        print "right we will look: %s (%s%%)"%(rightOvetT, rightOvetT*100.0/right.sum())
     
     
     
@@ -263,6 +273,7 @@ def main():
     #tuneLambda()
     trySeveral()
     #analyzeFailures()
+    #analyzeFailingTheshold()
 
 if __name__ == '__main__':
     main()

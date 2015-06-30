@@ -1,0 +1,8 @@
+# Binary or temporary files
+*pyc
+*py~
+# data folder
+data/*.txt
+data/*.csv
+#ignore log files
+*.log
