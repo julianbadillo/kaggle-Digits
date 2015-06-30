@@ -4,5 +4,6 @@
 # data folder
 data/*.txt
 data/*.csv
+data/*.png
 #ignore log files
 *.log

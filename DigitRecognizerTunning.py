@@ -154,7 +154,7 @@ def trySeveral():
     times = 20
     bestDig = None
     bestAcc = 0
-    l2 = 27
+    l2 = 56#27
     
     for i in range(times):
         #optimal parameters so far
@@ -258,13 +258,22 @@ def analyzeFailingTheshold():
     #define a trheshold
     for thr in np.linspace(0.5,0.9, 5):
         #how many bad have max below threshold?
-        wrongOverT = (h_w.max(1) < thr).sum()
+        wrongUnderT = (h_w.max(1) < thr).sum()
         #how many good have max below threshol?
-        rightOvetT = (h_r.max(1) < thr).sum()
+        rightUnderT = (h_r.max(1) < thr).sum()
         print "Threshold > %s"%thr       
-        print "wrong we will look: %s (%s%%)"%(wrongOverT, wrongOverT*100.0/wrong.sum())
-        print "right we will look: %s (%s%%)"%(rightOvetT, rightOvetT*100.0/right.sum())
-    
+        print "wrong we will look: %s (%s%%)"%(wrongUnderT, wrongUnderT*100.0/wrong.sum())
+        print "right we will look: %s (%s%%)"%(rightUnderT, rightUnderT*100.0/right.sum())
+        
+        #if we only gave answer to those over the threshold
+        #how good will be the accuracy?
+        #how many are the good ones over threshold
+        wrongOverT = (h_w.max(1) >= thr).sum()
+        #bad ones over threshold
+        rightOverT = (h_r.max(1) >= thr).sum()
+        acc_t = rightOverT*100.0 / (rightOverT + wrongOverT)
+        print "accuracy of the remaining samples: %s%%"%acc_t
+        print "samples remaining: %s%%"% (100.0*(rightOverT+wrongOverT)/m)
     
     
 def main():

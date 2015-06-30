@@ -35,6 +35,8 @@ class DigitRecognizer:
         self.lmbd = params['lmbd'] if 'lmbd' in params else 1
         #maximun iterations
         self.maxiter = params['maxiter'] if 'maxiter' in params else 100
+        #threshold to plug to a different analysis
+        self.threshold = params['threshold'] if 'threshold' in params else 0.0
         
     def train(self, X, y):
         """
@@ -85,7 +87,7 @@ class DigitRecognizer:
         self.Theta1 = Theta[:self.l2*(self.l1+1)].reshape((self.l2,self.l1+1))
         self.Theta2 = Theta[self.l2*(self.l1+1):].reshape((self.l3,self.l2+1))
         
-        self.__calculateCost(X, y)
+        self.__calculateCost__(X, y)
         
         #concat gradient
         self.Theta_grad = np.concatenate((self.Theta1_grad.flatten(), 
@@ -108,14 +110,14 @@ class DigitRecognizer:
         self.Theta1 = Theta[:self.l2*(self.l1+1)].reshape((self.l2,self.l1+1))
         self.Theta2 = Theta[self.l2*(self.l1+1):].reshape((self.l3,self.l2+1))
         
-        self.__calculateCost(X, y)
+        self.__calculateCost__(X, y)
         
         #concat gradient
         self.Theta_grad = np.concatenate((self.Theta1_grad.flatten(), 
                                     self.Theta2_grad.flatten()))
         return self.Theta_grad
         
-    def __calculateCost(self, X, y):
+    def __calculateCost__(self, X, y):
         """
         Calculates both cost and gradient in one go since it's much quicker
         """
@@ -188,8 +190,8 @@ class DigitRecognizer:
         
         #maximun index by rows
         p = np.argmax(a3, axis=1)
-        #TODO fix a threshold , so if the max doesn't pass that then feed to another algorithm.
-        #TODO deciding between best and second with another identifier
+        
+        # TODO filter only above threshold (the ones we are confident enough
         
         #save the latest hypothesis value
         self.h = a3
