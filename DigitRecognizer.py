@@ -205,7 +205,14 @@ class DigitRecognizer:
         """
         self.Theta = np.concatenate((self.Theta1.flatten(), self.Theta2.flatten()))
         np.savetxt(f, self.Theta)
-        
+    
+    def save_mongo(self):
+        """
+            Saves to Mongo DB
+        """
+        # TODO
+        pass
+    
     def load(self, f):
         """
             Loads a previously saved model
@@ -215,7 +222,14 @@ class DigitRecognizer:
         #reshape matrix
         self.Theta1 = self.Theta[:self.l2*(self.l1+1)].reshape((self.l2,self.l1+1))
         self.Theta2 = self.Theta[self.l2*(self.l1+1):].reshape((self.l3,self.l2+1))
-        
+     
+    def load_mongo(self):
+        """
+            Loads from Mongo DB
+        """
+        # TODO
+        pass
+       
 
 def gradientCheck(X, y, Theta, l1, l2, l3, lmbd):
     """
